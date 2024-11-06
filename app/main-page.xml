@@ -1,0 +1,43 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="AI Study Assistant" class="bg-purple-600 text-white" />
+    
+    <ScrollView>
+        <StackLayout class="p-4 space-y-4">
+            <Label text="Ask anything about your studies!" class="text-lg text-center text-purple-600 font-bold" />
+            
+            <TextView 
+                hint="Type your question here..."
+                text="{{ question }}"
+                class="bg-white p-4 rounded-lg border border-gray-300 h-32"
+                textWrap="true" />
+            
+            <Button 
+                text="Ask AI" 
+                tap="{{ askQuestion }}"
+                isEnabled="{{ !isLoading }}"
+                class="bg-purple-600 text-white font-bold py-3 rounded-lg" />
+            
+            <Button 
+                text="Clear"
+                tap="{{ clearAll }}"
+                class="bg-gray-500 text-white font-bold py-3 rounded-lg" />
+            
+            <ActivityIndicator busy="{{ isLoading }}" class="text-purple-600" />
+            
+            <!-- Error Message -->
+            <StackLayout 
+                class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" 
+                visibility="{{ hasError ? 'visible' : 'collapsed' }}">
+                <Label text="{{ errorMessage }}" textWrap="true" class="text-red-700" />
+            </StackLayout>
+            
+            <!-- Answer Section -->
+            <StackLayout 
+                class="bg-white p-4 rounded-lg" 
+                visibility="{{ answer ? 'visible' : 'collapsed' }}">
+                <Label text="Answer:" class="font-bold text-purple-600 mb-2" />
+                <Label text="{{ answer }}" textWrap="true" class="text-gray-700" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>
